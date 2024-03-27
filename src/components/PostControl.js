@@ -1,7 +1,6 @@
 import React from "react";
 import NewPostForm from "./NewPostForm";
 import PostList from "./PostList";
-import Post from "./Post";
 
 class PostControl extends React.Component {
 
