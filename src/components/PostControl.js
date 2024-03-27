@@ -7,7 +7,8 @@ class PostControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false
+      formVisibleOnPage: false,
+      mainPostList: []
     };
   }
 
@@ -15,16 +16,21 @@ class PostControl extends React.Component {
     this.setState(prevState => ({
       formVisibleOnPage: !prevState.formVisibleOnPage}));
   }
+  handleSubmittingNewPostToList = (newPost) => {
+    const newMainPostList = this.state.mainPostList.concat(newPost);
+    this.setState({mainPostList: newMainPostList,
+    formVisibleOnPage: false});
+  }
 
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
 
     if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewPostForm/>
+      currentlyVisibleState = <NewPostForm onNewPostSubmission={this.handleSubmittingNewPostToList}/>
       buttonText = "Return to Home";
     } else {
-      currentlyVisibleState = <PostList/>
+      currentlyVisibleState = <PostList postList={this.state.mainPostList}/>
       buttonText = "Submit Post";
     }
     return (
