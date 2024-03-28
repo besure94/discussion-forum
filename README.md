@@ -19,7 +19,7 @@
 
 ## Description
 
-**Note: this is for the `main` branch.**
+**Note: this is for the `test-with-redux` branch.**
 
 This application presents users with a home page for a discussion forum. Users can select `Submit Post`, which takes them to a form, where they can then add a post to the home page. Users can view a list of all of the posts from the home page. They can also click on individual posts, and `Edit` its details, or `Delete` the post altogether.
 
