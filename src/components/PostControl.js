@@ -37,12 +37,21 @@ class PostControl extends React.Component {
     this.setState({selectedPost: selectedPost});
   }
 
+  handleDeletingSelectedPost = (id) => {
+    const newMainPostList = this.state.mainPostList.filter(post => post.id !== id);
+    this.setState({
+      mainPostList: newMainPostList,
+      selectedPost: null
+    });
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
 
     if (this.state.selectedPost != null) {
-      currentlyVisibleState = <PostDetail post={this.state.selectedPost}/>
+      currentlyVisibleState = <PostDetail post={this.state.selectedPost}
+      onClickingDelete={this.handleDeletingSelectedPost}/>
       buttonText = "Return to Home";
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewPostForm onNewPostSubmission={this.handleSubmittingNewPostToList}/>
