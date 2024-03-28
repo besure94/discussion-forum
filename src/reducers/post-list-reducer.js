@@ -1,5 +1,21 @@
 const reducer = (state = {}, action) => {
-  return state;
-}
+  const { title, author, date, forum, upvotes, downvotes, id } = action;
+  switch (action.type) {
+    case 'SUBMIT_POST':
+      return Object.assign({}, state, {
+        [id]: {
+          title: title,
+          author: author,
+          date: date,
+          forum: forum,
+          upvotes: upvotes,
+          downvotes: downvotes,
+          id: id
+        }
+      });
+    default:
+      return state;
+  }
+};
 
 export default reducer;
