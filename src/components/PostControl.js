@@ -12,7 +12,6 @@ class PostControl extends React.Component {
     super(props);
     console.log(props);
     this.state = {
-      formVisibleOnPage: false,
       selectedPost: null,
       editing: false
     };
@@ -21,13 +20,15 @@ class PostControl extends React.Component {
   handleClick = () => {
     if (this.state.selectedPost != null) {
       this.setState({
-        formVisibleOnPage: false,
         selectedPost: null,
         editing: false
       });
     } else {
-      this.setState(prevState => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage}));
+      const { dispatch } = this.props;
+      const action = {
+        type: 'TOGGLE_FORM',
+      }
+      dispatch(action);
     }
   }
 
@@ -49,7 +50,10 @@ class PostControl extends React.Component {
       downvotes: downvotes
     }
     dispatch(action);
-    this.setState({formVisibleOnPage: false});
+    const action2 = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action2);
   }
 
   handleChangingSelectedPost = (id) => {
@@ -100,7 +104,7 @@ class PostControl extends React.Component {
       onClickingEdit={this.handleEditClick}
       onClickingDelete={this.handleDeletingSelectedPost}/>
       buttonText = "Return to Home";
-    } else if (this.state.formVisibleOnPage) {
+    } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState = <NewPostForm onNewPostSubmission={this.handleSubmittingNewPostToList}/>
       buttonText = "Return to Home";
     } else {
@@ -118,12 +122,14 @@ class PostControl extends React.Component {
 }
 
 PostControl.propTypes = {
-  mainPostList: PropTypes.object
+  mainPostList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 };
 
 const mapStateToProps = state => {
   return {
-    mainPostList: state
+    mainPostList: state.mainPostList,
+    formVisibleOnPage: state.formVisibleOnPage
   }
 }
 
