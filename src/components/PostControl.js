@@ -3,14 +3,16 @@ import NewPostForm from "./NewPostForm";
 import PostList from "./PostList";
 import PostDetail from "./PostDetail";
 import EditPostForm from "./EditPostForm";
+import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 
 class PostControl extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       formVisibleOnPage: false,
-      mainPostList: [],
       selectedPost: null,
       editing: false
     };
@@ -34,30 +36,52 @@ class PostControl extends React.Component {
   }
 
   handleSubmittingNewPostToList = (newPost) => {
-    const newMainPostList = this.state.mainPostList.concat(newPost);
-    this.setState({mainPostList: newMainPostList,
-    formVisibleOnPage: false});
+    const { dispatch } = this.props;
+    const { id, title, author, date, forum, upvotes, downvotes } = newPost;
+    const action = {
+      type: 'SUBMIT_POST',
+      id: id,
+      title: title,
+      author: author,
+      date: date,
+      forum: forum,
+      upvotes: upvotes,
+      downvotes: downvotes
+    }
+    dispatch(action);
+    this.setState({formVisibleOnPage: false});
   }
 
   handleChangingSelectedPost = (id) => {
-    const selectedPost = this.state.mainPostList.filter(post => post.id === id)[0];
+    const selectedPost = this.props.mainPostList[id];
     this.setState({selectedPost: selectedPost});
   }
 
   handleDeletingSelectedPost = (id) => {
-    const newMainPostList = this.state.mainPostList.filter(post => post.id !== id);
-    this.setState({
-      mainPostList: newMainPostList,
-      selectedPost: null
-    });
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_POST',
+      id: id
+    }
+    dispatch(action);
+    this.setState({selectedPost: null});
   }
 
   handleEditingSelectedPost = (postToEdit) => {
-    const editedMainPostList = this.state.mainPostList
-    .filter(post => post.id !== this.state.selectedPost.id)
-    .concat(postToEdit);
+    const { dispatch } = this.props;
+    const { id, title, author, date, forum, upvotes, downvotes } = postToEdit;
+    const action = {
+      type: 'SUBMIT_POST',
+      id: id,
+      title: title,
+      author: author,
+      date: date,
+      forum: forum,
+      upvotes: upvotes,
+      downvotes: downvotes
+    }
+    dispatch(action);
     this.setState({
-      mainPostList: editedMainPostList,
       editing: false,
       selectedPost: null
     });
@@ -80,7 +104,7 @@ class PostControl extends React.Component {
       currentlyVisibleState = <NewPostForm onNewPostSubmission={this.handleSubmittingNewPostToList}/>
       buttonText = "Return to Home";
     } else {
-      currentlyVisibleState = <PostList postList={this.state.mainPostList}
+      currentlyVisibleState = <PostList postList={this.props.mainPostList}
       onPostSelection={this.handleChangingSelectedPost}/>
       buttonText = "Submit Post";
     }
@@ -92,5 +116,17 @@ class PostControl extends React.Component {
     );
   }
 }
+
+PostControl.propTypes = {
+  mainPostList: PropTypes.object
+};
+
+const mapStateToProps = state => {
+  return {
+    mainPostList: state
+  }
+}
+
+PostControl = connect(mapStateToProps)(PostControl);
 
 export default PostControl;
