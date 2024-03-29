@@ -1,16 +1,18 @@
 import * as actions from './../../actions';
+import * as constants from '../../actions/ActionTypes';
+
 
 describe('Discussion Forum actions', () => {
   it('deletePost should create DELETE_POST action.', () => {
     expect(actions.deletePost(1)).toEqual({
-      type: 'DELETE_POST',
+      type: constants.DELETE_POST,
       id: 1
     });
   });
 
   it('toggleForm should toggle state between post list and form to submit a post.', () => {
     expect(actions.toggleForm()).toEqual({
-      type: 'TOGGLE_FORM'
+      type: constants.TOGGLE_FORM
     });
   });
 
@@ -24,7 +26,7 @@ describe('Discussion Forum actions', () => {
       downvotes: 0,
       id: 1
     })).toEqual({
-      type: 'SUBMIT_POST',
+      type: constants.SUBMIT_POST,
       title: "Sunset from last night.",
       author: "funnyhow94",
       date: "5/5/2021",

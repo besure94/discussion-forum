@@ -1,7 +1,9 @@
+import * as constants from './../actions/ActionTypes';
+
 const reducer = (state = {}, action) => {
   const { title, author, date, forum, upvotes, downvotes, id } = action;
   switch (action.type) {
-    case 'SUBMIT_POST':
+    case constants.SUBMIT_POST:
       return Object.assign({}, state, {
         [id]: {
           title: title,
@@ -13,7 +15,7 @@ const reducer = (state = {}, action) => {
           id: id
         }
       });
-    case 'DELETE_POST':
+    case constants.DELETE_POST:
       let newState = {...state};
       delete newState[id];
       return newState;

@@ -1,4 +1,5 @@
 import postListReducer from '../../reducers/post-list-reducer';
+import * as constants from '../../actions/ActionTypes';
 
 describe('postListReducer', () => {
 
@@ -40,7 +41,7 @@ describe('postListReducer', () => {
   test('Should successfully submit a new post to the post list.', () => {
     const { title, author, date, forum, upvotes, downvotes, id } = postData;
     action = {
-      type: 'SUBMIT_POST',
+      type: constants.SUBMIT_POST,
       title: title,
       author: author,
       date: date,
@@ -65,7 +66,7 @@ describe('postListReducer', () => {
 
   test('Should successfully delete a new post from the post list.', () => {
     action = {
-      type: 'DELETE_POST',
+      type: constants.DELETE_POST,
       id: 1
     };
 
