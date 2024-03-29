@@ -7,4 +7,10 @@ describe('Discussion Forum actions', () => {
       id: 1
     });
   });
+
+  it('toggleForm should toggle state between post list and form to submit a post.', () => {
+    expect(actions.toggleForm()).toEqual({
+      type: 'TOGGLE_FORM'
+    });
+  });
 });
