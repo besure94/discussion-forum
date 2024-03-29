@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 const store = createStore(rootReducer);
 
 store.subscribe(() =>
-  console.log(store.getState())
+  store.getState()
 );
 
 const container = document.getElementById('root');

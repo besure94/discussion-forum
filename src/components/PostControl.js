@@ -5,12 +5,12 @@ import PostDetail from "./PostDetail";
 import EditPostForm from "./EditPostForm";
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
+import * as actions from './../actions';
 
 class PostControl extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       selectedPost: null,
       editing: false
@@ -25,9 +25,7 @@ class PostControl extends React.Component {
       });
     } else {
       const { dispatch } = this.props;
-      const action = {
-        type: 'TOGGLE_FORM',
-      }
+      const action = actions.toggleForm();
       dispatch(action);
     }
   }
@@ -38,21 +36,9 @@ class PostControl extends React.Component {
 
   handleSubmittingNewPostToList = (newPost) => {
     const { dispatch } = this.props;
-    const { id, title, author, date, forum, upvotes, downvotes } = newPost;
-    const action = {
-      type: 'SUBMIT_POST',
-      id: id,
-      title: title,
-      author: author,
-      date: date,
-      forum: forum,
-      upvotes: upvotes,
-      downvotes: downvotes
-    }
+    const action = actions.submitPost(newPost);
     dispatch(action);
-    const action2 = {
-      type: 'TOGGLE_FORM'
-    }
+    const action2 = actions.toggleForm();
     dispatch(action2);
   }
 
@@ -63,27 +49,14 @@ class PostControl extends React.Component {
 
   handleDeletingSelectedPost = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_POST',
-      id: id
-    }
+    const action = actions.deletePost(id);
     dispatch(action);
     this.setState({selectedPost: null});
   }
 
   handleEditingSelectedPost = (postToEdit) => {
     const { dispatch } = this.props;
-    const { id, title, author, date, forum, upvotes, downvotes } = postToEdit;
-    const action = {
-      type: 'SUBMIT_POST',
-      id: id,
-      title: title,
-      author: author,
-      date: date,
-      forum: forum,
-      upvotes: upvotes,
-      downvotes: downvotes
-    }
+    const action = actions.submitPost(postToEdit);
     dispatch(action);
     this.setState({
       editing: false,
