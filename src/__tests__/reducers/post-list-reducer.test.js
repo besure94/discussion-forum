@@ -136,4 +136,32 @@ describe('postListReducer', () => {
     });
   });
 
+  test('Should decrease the downvotes property for a post by 1 when a user clicks "downvote".', () => {
+    const { title, author, forum, upvotes, downvotes, timePosted, elapsedTime, id } = postData;
+    action = {
+      type: constants.DOWNVOTE_POST,
+      title: title,
+      author: author,
+      forum: forum,
+      upvotes: upvotes,
+      downvotes: downvotes,
+      timePosted: timePosted,
+      elapsedTime: elapsedTime,
+      id: id
+    };
+
+    expect(postListReducer({}, action)).toEqual({
+      [id]: {
+        title: title,
+        author: author,
+        forum: forum,
+        upvotes: upvotes,
+        downvotes: -1,
+        timePosted: timePosted,
+        elapsedTime: 'less than a minute ago',
+        id: id
+      }
+    });
+  });
+
 });

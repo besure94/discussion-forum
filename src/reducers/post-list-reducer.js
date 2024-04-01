@@ -43,6 +43,20 @@ const reducer = (state = {}, action) => {
         }
       });
 
+    case constants.DOWNVOTE_POST:
+      return Object.assign({}, state, {
+        [id]: {
+          title: title,
+          author: author,
+          forum: forum,
+          upvotes: upvotes,
+          downvotes: downvotes - 1,
+          timePosted: timePosted,
+          elapsedTime: elapsedTime,
+          id: id
+        }
+      });
+
     default:
       return state;
   }
