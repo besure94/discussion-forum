@@ -6,7 +6,7 @@ function Post(props) {
     <React.Fragment>
       <div onClick={() => props.whenPostClicked(props.id)}>
         <h2>{props.title}</h2>
-        <h4>Submitted by ~ {props.author} in / {props.forum} /</h4>
+        <h4>Submitted by <em>{props.author}</em> in {props.forum}</h4>
         <h4>{props.upvotes} Upvotes</h4>
         <h4>{props.downvotes} Downvotes</h4>
         <h4>{props.elapsedTime}</h4>
