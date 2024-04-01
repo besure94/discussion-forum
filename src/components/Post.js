@@ -22,7 +22,6 @@ Post.propTypes = {
   forum: PropTypes.string.isRequired,
   upvotes: PropTypes.number.isRequired,
   downvotes: PropTypes.number.isRequired,
-  // timePosted: PropTypes.string.isRequired,
   elapsedTime: PropTypes.string.isRequired,
   id: PropTypes.string,
   whenPostClicked: PropTypes.func

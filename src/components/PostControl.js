@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import * as actions from './../actions';
 import { formatDistanceToNow } from 'date-fns';
-import { act } from "react-dom/test-utils";
 
 class PostControl extends React.Component {
 

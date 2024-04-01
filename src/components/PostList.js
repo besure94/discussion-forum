@@ -13,7 +13,6 @@ function PostList(props) {
           forum={post.forum}
           upvotes={post.upvotes}
           downvotes={post.downvotes}
-          // timePosted={post.timePosted}
           elapsedTime={post.elapsedTime}
           id={post.id}
           key={post.id}/>
