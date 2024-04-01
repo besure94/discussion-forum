@@ -39,6 +39,21 @@ export const upvotePost = (post) => {
   }
 };
 
+export const downvotePost = (post) => {
+  const { title, author, forum, upvotes, downvotes, timePosted, elapsedTime, id }  = post;
+  return {
+    type: constants.DOWNVOTE_POST,
+    title: title,
+    author: author,
+    forum: forum,
+    upvotes: upvotes,
+    downvotes: downvotes - 1,
+    timePosted: timePosted,
+    elapsedTime: elapsedTime,
+    id: id
+  }
+};
+
 export const updateTime = (id, elapsedTime) => ({
   type: constants.UPDATE_TIME,
   id: id,
