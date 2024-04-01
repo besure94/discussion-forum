@@ -1,7 +1,7 @@
 import * as constants from './../actions/ActionTypes';
 
 const reducer = (state = {}, action) => {
-  const { title, author, forum, upvotes, downvotes, timePosted, id } = action;
+  const { title, author, forum, upvotes, downvotes, timePosted, elapsedTime, id } = action;
   switch (action.type) {
     case constants.SUBMIT_POST:
       return Object.assign({}, state, {
@@ -12,6 +12,7 @@ const reducer = (state = {}, action) => {
           upvotes: upvotes,
           downvotes: downvotes,
           timePosted: timePosted,
+          elapsedTime: elapsedTime,
           id: id
         }
       });
@@ -19,6 +20,12 @@ const reducer = (state = {}, action) => {
       let newState = {...state};
       delete newState[id];
       return newState;
+    case constants.UPDATE_TIME:
+      const newPost = Object.assign({}, state[id], {elapsedTime});
+      const updatedState = Object.assign({}, state, {
+        [id]: newPost
+      });
+      return updatedState;
     default:
       return state;
   }

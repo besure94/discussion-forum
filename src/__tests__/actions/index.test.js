@@ -23,7 +23,8 @@ describe('Discussion Forum actions', () => {
       forum: "pics",
       upvotes: 0,
       downvotes: 0,
-      timePosted: 'less than a minute ago',
+      timePosted: 0,
+      elapsedTime: 'less than a minute ago',
       id: 1
     })).toEqual({
       type: constants.SUBMIT_POST,
@@ -32,8 +33,18 @@ describe('Discussion Forum actions', () => {
       forum: "pics",
       upvotes: 0,
       downvotes: 0,
-      timePosted: 'less than a minute ago',
+      timePosted: 0,
+      elapsedTime: 'less than a minute ago',
       id: 1
     });
   });
+
+  it('updateTime should create UPDATE_TIME action', () => {
+    expect(actions.updateTime(1, 'less than a minute ago')).toEqual({
+      type: constants.UPDATE_TIME,
+      id: 1,
+      elapsedTime: 'less than a minute ago'
+    });
+  });
+
 });

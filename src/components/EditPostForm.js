@@ -10,10 +10,11 @@ function EditPostForm(props) {
     props.onEditingPost({
       title: event.target.title.value,
       author: event.target.author.value,
-      date: event.target.date.value,
-      forum: event.target.date.value,
+      forum: event.target.forum.value,
       upvotes: 0,
       downvotes: 0,
+      timePosted: post.timePosted,
+      elapsedTime: post.elapsedTime,
       id: post.id
     })
   }

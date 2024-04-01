@@ -10,7 +10,7 @@ export const toggleForm = () => ({
 });
 
 export const submitPost = (post) => {
-  const { title, author, forum, upvotes, downvotes, timePosted, id }  = post;
+  const { title, author, forum, upvotes, downvotes, timePosted, elapsedTime, id }  = post;
   return {
     type: constants.SUBMIT_POST,
     title: title,
@@ -19,6 +19,13 @@ export const submitPost = (post) => {
     upvotes: upvotes,
     downvotes: downvotes,
     timePosted: timePosted,
+    elapsedTime: elapsedTime,
     id: id
   }
 };
+
+export const updateTime = (id, elapsedTime) => ({
+  type: constants.UPDATE_TIME,
+  id: id,
+  elapsedTime: elapsedTime
+});

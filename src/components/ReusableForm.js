@@ -19,12 +19,6 @@ function ReusableForm(props) {
           <br/>
           <input
             type="text"
-            name="date"
-            placeholder="Date"
-            required/>
-          <br/>
-          <input
-            type="text"
             name="forum"
             placeholder="Forum"
             required/>

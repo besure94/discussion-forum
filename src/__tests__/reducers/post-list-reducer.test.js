@@ -11,7 +11,10 @@ describe('postListReducer', () => {
     forum: 'Outdoors',
     upvotes: 0,
     downvotes: 0,
-    timePosted: formatDistanceToNow(new Date()),
+    timePosted: new Date(),
+    elapsedTime: formatDistanceToNow(new Date(), {
+      addSuffix: true
+    }),
     id: 1
   };
 
@@ -22,7 +25,6 @@ describe('postListReducer', () => {
       forum: 'Metal',
       upvotes: 0,
       downvotes: 0,
-      timePosted: formatDistanceToNow(new Date()),
       id: 1
     }, 2: {
       title: 'Went fishing in Boca Raton',
@@ -30,7 +32,6 @@ describe('postListReducer', () => {
       forum: 'Outdoors',
       upvotes: 0,
       downvotes: 0,
-      timePosted: formatDistanceToNow(new Date()),
       id: 2
     }
   };
@@ -40,7 +41,7 @@ describe('postListReducer', () => {
   });
 
   test('Should successfully submit a new post to the post list.', () => {
-    const { title, author, forum, upvotes, downvotes, timePosted, id } = postData;
+    const { title, author, forum, upvotes, downvotes, timePosted, elapsedTime, id } = postData;
     action = {
       type: constants.SUBMIT_POST,
       title: title,
@@ -49,6 +50,7 @@ describe('postListReducer', () => {
       upvotes: upvotes,
       downvotes: downvotes,
       timePosted: timePosted,
+      elapsedTime: elapsedTime,
       id: id
     };
 
@@ -60,6 +62,7 @@ describe('postListReducer', () => {
         upvotes: upvotes,
         downvotes: downvotes,
         timePosted: timePosted,
+        elapsedTime: 'less than a minute ago',
         id: id
       }
     });
@@ -78,8 +81,29 @@ describe('postListReducer', () => {
         forum: 'Outdoors',
         upvotes: 0,
         downvotes: 0,
-        timePosted: formatDistanceToNow(new Date()),
         id: 2
+      }
+    });
+  });
+
+  test('Should add a timestamp with timer to a submitted post.', () => {
+    const { title, author, forum, upvotes, downvotes, timePosted, id } = postData;
+    action = {
+      type: constants.UPDATE_TIME,
+      elapsedTime: '5 minutes ago',
+      id: id
+    };
+
+    expect(postListReducer({ [id]: postData}, action)).toEqual({
+      [id]: {
+        title: title,
+        author: author,
+        forum: forum,
+        upvotes: upvotes,
+        downvotes: downvotes,
+        timePosted: timePosted,
+        elapsedTime: '5 minutes ago',
+        id: id
       }
     });
   });

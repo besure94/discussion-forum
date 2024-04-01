@@ -6,6 +6,8 @@ import EditPostForm from "./EditPostForm";
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import * as actions from './../actions';
+import { formatDistanceToNow } from 'date-fns';
+import { act } from "react-dom/test-utils";
 
 class PostControl extends React.Component {
 
@@ -15,6 +17,27 @@ class PostControl extends React.Component {
       selectedPost: null,
       editing: false
     };
+  }
+
+  componentDidMount() {
+    this.timeUpdater = setInterval(() =>
+      this.updateElapsedTime(), 60000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timeUpdater);
+  }
+
+  updateElapsedTime = () => {
+    const { dispatch } = this.props;
+    Object.values(this.props.mainPostList).forEach(post => {
+      const newTime = formatDistanceToNow(post.timePosted, {
+        addSuffix: true
+      });
+      const action = actions.updateTime(post.id, newTime);
+      dispatch(action);
+    });
   }
 
   handleClick = () => {
