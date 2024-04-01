@@ -47,4 +47,27 @@ describe('Discussion Forum actions', () => {
     });
   });
 
+  it('upvotePost should create UPVOTE_POST action', () => {
+    expect(actions.upvotePost({
+      title: "Sunset from last night.",
+      author: "funnyhow94",
+      forum: "pics",
+      upvotes: 0,
+      downvotes: 0,
+      timePosted: 0,
+      elapsedTime: 'less than a minute ago',
+      id: 1
+    })).toEqual({
+      type: constants.UPVOTE_POST,
+      title: "Sunset from last night.",
+      author: "funnyhow94",
+      forum: "pics",
+      upvotes: 1,
+      downvotes: 0,
+      timePosted: 0,
+      elapsedTime: 'less than a minute ago',
+      id: 1
+    });
+  });
+
 });
