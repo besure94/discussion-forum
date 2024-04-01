@@ -16,16 +16,33 @@ const reducer = (state = {}, action) => {
           id: id
         }
       });
+
     case constants.DELETE_POST:
       let newState = {...state};
       delete newState[id];
       return newState;
+
     case constants.UPDATE_TIME:
       const newPost = Object.assign({}, state[id], {elapsedTime});
       const updatedState = Object.assign({}, state, {
         [id]: newPost
       });
       return updatedState;
+
+    case constants.UPVOTE_POST:
+      return Object.assign({}, state, {
+        [id]: {
+          title: title,
+          author: author,
+          forum: forum,
+          upvotes: upvotes + 1,
+          downvotes: downvotes,
+          timePosted: timePosted,
+          elapsedTime: elapsedTime,
+          id: id
+        }
+      });
+
     default:
       return state;
   }

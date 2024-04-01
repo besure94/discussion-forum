@@ -108,4 +108,32 @@ describe('postListReducer', () => {
     });
   });
 
+  test('Should increase the upvotes property for a post by 1 when the user clicks "upvote".', () => {
+    const { title, author, forum, upvotes, downvotes, timePosted, elapsedTime, id } = postData;
+    action = {
+      type: constants.UPVOTE_POST,
+      title: title,
+      author: author,
+      forum: forum,
+      upvotes: upvotes,
+      downvotes: downvotes,
+      timePosted: timePosted,
+      elapsedTime: elapsedTime,
+      id: id
+    };
+
+    expect(postListReducer({}, action)).toEqual({
+      [id]: {
+        title: title,
+        author: author,
+        forum: forum,
+        upvotes: 1,
+        downvotes: downvotes,
+        timePosted: timePosted,
+        elapsedTime: 'less than a minute ago',
+        id: id
+      }
+    });
+  });
+
 });
