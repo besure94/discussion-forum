@@ -10,15 +10,15 @@ export const toggleForm = () => ({
 });
 
 export const submitPost = (post) => {
-  const { title, author, date, forum, upvotes, downvotes, id }  = post;
+  const { title, author, forum, upvotes, downvotes, timePosted, id }  = post;
   return {
     type: constants.SUBMIT_POST,
     title: title,
     author: author,
-    date: date,
     forum: forum,
     upvotes: upvotes,
     downvotes: downvotes,
+    timePosted: timePosted,
     id: id
   }
 };

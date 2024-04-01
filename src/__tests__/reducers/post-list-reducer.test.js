@@ -1,5 +1,6 @@
 import postListReducer from '../../reducers/post-list-reducer';
 import * as constants from '../../actions/ActionTypes';
+import { formatDistanceToNow } from 'date-fns';
 
 describe('postListReducer', () => {
 
@@ -7,10 +8,10 @@ describe('postListReducer', () => {
   const postData = {
     title: 'Went fishing in Boca Raton',
     author: 'agingFisherman',
-    date: '5/14/2023',
     forum: 'Outdoors',
     upvotes: 0,
     downvotes: 0,
+    timePosted: formatDistanceToNow(new Date()),
     id: 1
   };
 
@@ -18,18 +19,18 @@ describe('postListReducer', () => {
     1: {
       title: 'Live performance by Deftones on Conan 1998',
       author: 'punkorama',
-      date: '9/12/2018',
       forum: 'Metal',
       upvotes: 0,
       downvotes: 0,
+      timePosted: formatDistanceToNow(new Date()),
       id: 1
     }, 2: {
       title: 'Went fishing in Boca Raton',
       author: 'agingFisherman',
-      date: '5/14/2023',
       forum: 'Outdoors',
       upvotes: 0,
       downvotes: 0,
+      timePosted: formatDistanceToNow(new Date()),
       id: 2
     }
   };
@@ -39,15 +40,15 @@ describe('postListReducer', () => {
   });
 
   test('Should successfully submit a new post to the post list.', () => {
-    const { title, author, date, forum, upvotes, downvotes, id } = postData;
+    const { title, author, forum, upvotes, downvotes, timePosted, id } = postData;
     action = {
       type: constants.SUBMIT_POST,
       title: title,
       author: author,
-      date: date,
       forum: forum,
       upvotes: upvotes,
       downvotes: downvotes,
+      timePosted: timePosted,
       id: id
     };
 
@@ -55,10 +56,10 @@ describe('postListReducer', () => {
       [id]: {
         title: title,
         author: author,
-        date: date,
         forum: forum,
         upvotes: upvotes,
         downvotes: downvotes,
+        timePosted: timePosted,
         id: id
       }
     });
@@ -74,12 +75,13 @@ describe('postListReducer', () => {
       2: {
         title: 'Went fishing in Boca Raton',
         author: 'agingFisherman',
-        date: '5/14/2023',
         forum: 'Outdoors',
         upvotes: 0,
         downvotes: 0,
+        timePosted: formatDistanceToNow(new Date()),
         id: 2
       }
     });
   });
+
 });

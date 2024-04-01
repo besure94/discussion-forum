@@ -20,19 +20,19 @@ describe('Discussion Forum actions', () => {
     expect(actions.submitPost({
       title: "Sunset from last night.",
       author: "funnyhow94",
-      date: "5/5/2021",
       forum: "pics",
       upvotes: 0,
       downvotes: 0,
+      timePosted: 'less than a minute ago',
       id: 1
     })).toEqual({
       type: constants.SUBMIT_POST,
       title: "Sunset from last night.",
       author: "funnyhow94",
-      date: "5/5/2021",
       forum: "pics",
       upvotes: 0,
       downvotes: 0,
+      timePosted: 'less than a minute ago',
       id: 1
     });
   });
