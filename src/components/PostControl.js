@@ -138,8 +138,15 @@ PostControl.propTypes = {
 };
 
 const mapStateToProps = state => {
+  const mainPostListArray = Object.values(state.mainPostList);
+  const sortedMainPostListArray = mainPostListArray.sort((a, b) => b.upvotes - a.upvotes);
+  const sortedMainPostList = sortedMainPostListArray.reduce((acc, post) => {
+    acc[post.id] = post;
+    return acc;
+  }, {});
+
   return {
-    mainPostList: state.mainPostList,
+    mainPostList: sortedMainPostList,
     formVisibleOnPage: state.formVisibleOnPage
   }
 }
