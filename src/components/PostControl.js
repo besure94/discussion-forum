@@ -56,6 +56,13 @@ class PostControl extends React.Component {
     this.setState({editing: true});
   }
 
+  handleUpvoteClick = (post) => {
+    post.upvotes += 1;
+    const { dispatch } = this.props;
+    const action = actions.upvotePost(post);
+    dispatch(action);
+  }
+
   handleSubmittingNewPostToList = (newPost) => {
     const { dispatch } = this.props;
     const action = actions.submitPost(newPost);
@@ -96,6 +103,7 @@ class PostControl extends React.Component {
       buttonText = "Return to Home";
     } else if (this.state.selectedPost != null) {
       currentlyVisibleState = <PostDetail post={this.state.selectedPost}
+      onClickingUpvote={this.handleUpvoteClick}
       onClickingEdit={this.handleEditClick}
       onClickingDelete={this.handleDeletingSelectedPost}/>
       buttonText = "Return to Home";
@@ -118,7 +126,7 @@ class PostControl extends React.Component {
 
 PostControl.propTypes = {
   mainPostList: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
+  formVisibleOnPage: PropTypes.bool,
 };
 
 const mapStateToProps = state => {

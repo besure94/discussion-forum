@@ -35,7 +35,7 @@ const reducer = (state = {}, action) => {
           title: title,
           author: author,
           forum: forum,
-          upvotes: upvotes + 1,
+          upvotes: upvotes,
           downvotes: downvotes,
           timePosted: timePosted,
           elapsedTime: elapsedTime,
