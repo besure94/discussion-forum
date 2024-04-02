@@ -50,7 +50,7 @@ const reducer = (state = {}, action) => {
           author: author,
           forum: forum,
           upvotes: upvotes,
-          downvotes: downvotes - 1,
+          downvotes: downvotes + 1,
           timePosted: timePosted,
           elapsedTime: elapsedTime,
           id: id

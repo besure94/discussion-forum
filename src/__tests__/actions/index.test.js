@@ -86,7 +86,7 @@ describe('Discussion Forum actions', () => {
       author: "funnyhow94",
       forum: "pics",
       upvotes: 0,
-      downvotes: -1,
+      downvotes: 1,
       timePosted: 0,
       elapsedTime: 'less than a minute ago',
       id: 1

@@ -25,7 +25,8 @@ export const submitPost = (post) => {
 };
 
 export const upvotePost = (post) => {
-  const { title, author, forum, upvotes, downvotes, timePosted, elapsedTime, id }  = post;
+  console.log(post);
+  const { title, author, forum, upvotes, downvotes, timePosted, elapsedTime, id } = post;
   return {
     type: constants.UPVOTE_POST,
     title: title,
@@ -47,7 +48,7 @@ export const downvotePost = (post) => {
     author: author,
     forum: forum,
     upvotes: upvotes,
-    downvotes: downvotes - 1,
+    downvotes: downvotes + 1,
     timePosted: timePosted,
     elapsedTime: elapsedTime,
     id: id

@@ -136,7 +136,7 @@ describe('postListReducer', () => {
     });
   });
 
-  test('Should decrease the downvotes property for a post by 1 when a user clicks "downvote".', () => {
+  test('Should increase the downvotes property for a post by 1 when a user clicks "downvote".', () => {
     const { title, author, forum, upvotes, downvotes, timePosted, elapsedTime, id } = postData;
     action = {
       type: constants.DOWNVOTE_POST,
@@ -156,7 +156,7 @@ describe('postListReducer', () => {
         author: author,
         forum: forum,
         upvotes: upvotes,
-        downvotes: -1,
+        downvotes: 1,
         timePosted: timePosted,
         elapsedTime: 'less than a minute ago',
         id: id
