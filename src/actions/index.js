@@ -47,7 +47,7 @@ export const downvotePost = (post) => {
     author: author,
     forum: forum,
     upvotes: upvotes,
-    downvotes: downvotes + 1,
+    downvotes: downvotes,
     timePosted: timePosted,
     elapsedTime: elapsedTime,
     id: id

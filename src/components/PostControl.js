@@ -63,6 +63,13 @@ class PostControl extends React.Component {
     dispatch(action);
   }
 
+  handleDownvoteClick = (post) => {
+    post.downvotes += 1;
+    const { dispatch } = this.props;
+    const action = actions.downvotePost(post);
+    dispatch(action);
+  }
+
   handleSubmittingNewPostToList = (newPost) => {
     const { dispatch } = this.props;
     const action = actions.submitPost(newPost);
@@ -104,6 +111,7 @@ class PostControl extends React.Component {
     } else if (this.state.selectedPost != null) {
       currentlyVisibleState = <PostDetail post={this.state.selectedPost}
       onClickingUpvote={this.handleUpvoteClick}
+      onClickingDownvote={this.handleDownvoteClick}
       onClickingEdit={this.handleEditClick}
       onClickingDelete={this.handleDeletingSelectedPost}/>
       buttonText = "Return to Home";
