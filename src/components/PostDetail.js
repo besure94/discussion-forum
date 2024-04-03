@@ -6,7 +6,7 @@ function PostDetail(props) {
   return (
     <React.Fragment>
       <h2>{post.title}</h2>
-      <h4>Submitted by ~ {post.author} ~ on {post.date} in / {post.forum} /</h4>
+      <h4>Submitted by {post.author} in {post.forum} on {post.timePosted.toDateString()}</h4>
       <h4>{post.upvotes} Upvotes</h4>
       <h4>{post.downvotes} Downvotes</h4>
       <br/>
