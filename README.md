@@ -1,6 +1,6 @@
 # Discussion Forum
 
-#### An application that allows users to view and submit posts about their favorite topics.
+#### An application that allows users to submit posts about their favorite topics.
 
 #### By Brian Scherner
 
@@ -16,12 +16,14 @@
 * ES Lint
 * Bootstrap
 * CSS
+* Redux
+* Date-fns
 
 ## Description
 
-**Note: this is for the `main` branch.**
-
 This application presents users with a home page for a discussion forum. Users can select `Submit Post`, which takes them to a form, where they can then add a post to the home page. Users can view a list of all of the posts from the home page. They can also click on individual posts, and `Edit` its details, or `Delete` the post altogether.
+
+Users also have the ability to `upvote` posts that they like, and `downvote` posts that they don't like.
 
 ## Setup/Installation Requirements
 
